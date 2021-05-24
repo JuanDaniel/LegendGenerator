@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>LegendGenerator</Name>
+    <Assembly>C:\Users\jd.santana\Documents\Visual Studio 2017\Projects\LegendGenerator\LegendGenerator\bin\Debug\LegendGenerator.dll</Assembly>
+    <AddInId>1d8721f0-ae70-407f-ac46-7f561d28c09f</AddInId>
+    <FullClassName>BBI.JD.CrtlApplication</FullClassName>
+    <VendorId>JDS</VendorId>
+    <VendorDescription>Juan Daniel SANTANA</VendorDescription>
+  </AddIn>
+</RevitAddIns>
