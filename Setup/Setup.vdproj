@@ -88,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E3EDF1FD26684EC59257C7DAE1A46F59"
+        "OwnerKey" = "8:_9ECDD68C0E4BAD1DDF697EF0AD6FF426"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +100,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9ECDD68C0E4BAD1DDF697EF0AD6FF426"
+        "OwnerKey" = "8:_E3EDF1FD26684EC59257C7DAE1A46F59"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -315,11 +315,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_9ECDD68C0E4BAD1DDF697EF0AD6FF426"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -366,11 +361,6 @@
             "AssemblyAsmDisplayName" = "8:RevitAddInUtility, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_CDE4DFFCF905D8AD041FCA62AB7F7BEA"
-                    {
-                    "Name" = "8:RevitAddInUtility.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:RevitAddInUtility.dll"
             "TargetName" = "8:"
@@ -466,15 +456,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Add-in LegendGenerator"
-        "ProductCode" = "8:{C4E5F567-8B02-4A15-A863-1F7E620918AF}"
-        "PackageCode" = "8:{F0CD4B9C-9F30-4F53-BA6E-295CD698B2B2}"
+        "ProductCode" = "8:{DC1603AF-6942-44C4-8516-52B7009BB7A3}"
+        "PackageCode" = "8:{76F6BD19-2F42-41D8-873C-D0FA30FED128}"
         "UpgradeCode" = "8:{DC0E7256-15F6-4959-95C8-7C81824795C3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:BBI"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -988,7 +978,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6A59E44801C94D36BACB42AFBF0A6C75"
             {
-            "SourcePath" = "8:..\\Installer\\obj\\Debug\\Installer.dll"
+            "SourcePath" = "8:..\\Installer\\obj\\Release\\Installer.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E7890255BF134465B65807A99DA41F02"
@@ -1016,7 +1006,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3EDF1FD26684EC59257C7DAE1A46F59"
             {
-            "SourcePath" = "8:..\\LegendGenerator\\obj\\Debug\\LegendGenerator.dll"
+            "SourcePath" = "8:..\\LegendGenerator\\obj\\Release\\LegendGenerator.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E7890255BF134465B65807A99DA41F02"

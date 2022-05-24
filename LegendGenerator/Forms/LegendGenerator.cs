@@ -494,7 +494,7 @@ namespace BBI.JD.Forms
                 return Core.DrawFilledRectangle(graphicSettings.SurfaceForegroundPatternColor);
             }
 
-            return JD.LegendGenerator.no_overwrite;
+            return LegendGenerator.no_overwrite;
         }
 
         private ParameterDescription[] GetParametersDescription()

@@ -61,58 +61,53 @@ namespace Installer
 
         private void WriteRevitAddin()
         {
-            foreach (var product in RevitProductUtility.GetAllInstalledRevitProducts())
+            Guid guid = new Guid("1d8721f0-ae70-407f-ac46-7f561d28c09f");
+            string assembly = GetAssembly();
+            string fullClassName = "BBI.JD.CrtlApplication";
+            string vendorId = "JDS";
+            string vendorDescription = "Juan Daniel SANTANA";
+
+            foreach (string path in GetRevitVersionsPath())
             {
-                if (product.Version == RevitVersion.Revit2019)
+                string pathAddin = Path.Combine(path, "LegendGenerator.addin");
+
+                RevitAddInManifest manifest = File.Exists(pathAddin) ? AddInManifestUtility.GetRevitAddInManifest(pathAddin) : new RevitAddInManifest();
+
+                RevitAddInApplication app = manifest.AddInApplications.FirstOrDefault(x => x.AddInId == guid);
+
+                if (app == null)
                 {
-                    string pathAddin = product.AllUsersAddInFolder + "\\LegendGenerator.addin";
-                    Guid guid = new Guid("1d8721f0-ae70-407f-ac46-7f561d28c09f");
-                    string assembly = GetAssembly();
-                    string fullClassName = "BBI.JD.CrtlApplication";
-                    string vendorId = "JDS";
-                    string vendorDescription = "Juan Daniel SANTANA";
+                    app = new RevitAddInApplication("LegendGenerator", assembly, guid, fullClassName, vendorId);
+                    app.VendorDescription = vendorDescription;
 
-                    RevitAddInManifest manifest = File.Exists(pathAddin) ? AddInManifestUtility.GetRevitAddInManifest(pathAddin) : new RevitAddInManifest();
+                    manifest.AddInApplications.Add(app);
+                }
+                else
+                {
+                    app.Assembly = assembly;
+                    app.FullClassName = fullClassName;
+                }
 
-                    RevitAddInApplication app = manifest.AddInApplications.FirstOrDefault(x => x.AddInId == guid);
-
-                    if (app == null)
-                    {
-                        app = new RevitAddInApplication("LegendGenerator", assembly, guid, fullClassName, vendorId);
-                        app.VendorDescription = vendorDescription;
-
-                        manifest.AddInApplications.Add(app);
-                    }
-                    else
-                    {
-                        app.Assembly = assembly;
-                        app.FullClassName = fullClassName;
-                    }
-
-                    if (manifest.Name == null)
-                    {
-                        manifest.SaveAs(pathAddin);
-                    }
-                    else
-                    {
-                        manifest.Save();
-                    }
+                if (manifest.Name == null)
+                {
+                    manifest.SaveAs(pathAddin);
+                }
+                else
+                {
+                    manifest.Save();
                 }
             }
         }
 
         private void DeleteRevitAddin()
         {
-            foreach (var product in RevitProductUtility.GetAllInstalledRevitProducts())
+            foreach (string path in GetRevitVersionsPath())
             {
-                if (product.Version == RevitVersion.Revit2019)
+                string pathAddin = Path.Combine(path, "LegendGenerator.addin");
+
+                if (File.Exists(pathAddin))
                 {
-                    string pathAddin = product.AllUsersAddInFolder + "\\LegendGenerator.addin";
-                    
-                    if (File.Exists(pathAddin))
-                    {
-                        File.Delete(pathAddin);
-                    }
+                    File.Delete(pathAddin);
                 }
             }
         }
@@ -124,6 +119,35 @@ namespace Installer
             pathDir = pathDir.Remove(pathDir.Length - 1, 1);
 
             return pathDir + "LegendGenerator.dll";
+        }
+
+        private List<string> GetRevitVersionsPath()
+        {
+            List<string> paths = new List<string>();
+
+            RevitProduct product = RevitProductUtility.GetAllInstalledRevitProducts()
+                .FirstOrDefault(x => x.Version != RevitVersion.Unknown);
+
+            if (product != null)
+            {
+                DirectoryInfo parent = Directory.GetParent(product.AllUsersAddInFolder);
+
+                int ver;
+
+                foreach (DirectoryInfo version in parent.EnumerateDirectories())
+                {
+                    if (int.TryParse(version.Name, out ver))
+                    {
+                        // The plugin was compiled for versions equal to 2019 and above
+                        if (ver >= 2019)
+                        {
+                            paths.Add(version.FullName);
+                        }
+                    }
+                }
+            }
+
+            return paths;
         }
     }
 }
